@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica tu Spelling de Halloween</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+        }
+        h1 {
+            color: #ff00aa;
+            margin-top: 20px;
+        }
+        .word-container {
+            margin: 20px;
+        }
+        .word {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ff00aa;
+            border-radius: 5px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ff00aa;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #b108c7;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .final-score {
+            margin-top: 30px;
+            font-size: 20px;
+        }
+        .teacher-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🕷️ Practica tu Spelling de Halloween 🕷️</h1>
+    
+    <div class="word-container">
+        <div class="word">1. Fantasma</div>
+        <input type="text" id="input1" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input1', 'ghost')">Comprobar</button>
+        <div class="result" id="result1"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">2. Calabaza</div>
+        <input type="text" id="input2" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input2', 'pumpkin')">Comprobar</button>
+        <div class="result" id="result2"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">3. Bruja</div>
+        <input type="text" id="input3" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input3', 'witch')">Comprobar</button>
+        <div class="result" id="result3"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">4. Esqueleto</div>
+        <input type="text" id="input4" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input4', 'skeleton')">Comprobar</button>
+        <div class="result" id="result4"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">5. Dulce</div>
+        <input type="text" id="input5" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input5', 'candy')">Comprobar</button>
+        <div class="result" id="result5"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">6. Monstruo</div>
+        <input type="text" id="input6" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input6', 'monster')">Comprobar</button>
+        <div class="result" id="result6"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">7. Vampiro</div>
+        <input type="text" id="input7" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input7', 'vampire')">Comprobar</button>
+        <div class="result" id="result7"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">8. Cementerio</div>
+        <input type="text" id="input8" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input8', 'graveyard')">Comprobar</button>
+        <div class="result" id="result8"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">9. Lápida</div>
+        <input type="text" id="input9" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input9', 'tombstone')">Comprobar</button>
+        <div class="result" id="result9"></div>
+    </div>
+
+    <div class="word-container">
+        <div class="word">10. Terror</div>
+        <input type="text" id="input10" placeholder="Write the word in English...">
+        <button onclick="checkSpelling('input10', 'terror')">Comprobar</button>
+        <div class="result" id="result10"></div>
+    </div>
+
+    <div class="final-score">
+        <button onclick="calculateScore()">Calificar</button>
+        <div id="scoreResult"></div>
+    </div>
+
+    <div class="teacher-container">
+        <input type="password" id="teacherPassword" placeholder="Clave del profesor...">
+        <button onclick="teacherMode()">Teacher</button>
+    </div>
+
+    <script>
+        let correctAnswers = 0;
+        let totalWords = 10;
+
+        function checkSpelling(inputId, correctSpelling) {
+            const userInput = document.getElementById(inputId).value.toLowerCase();
+            const resultId = 'result' + inputId.charAt(inputId.length - 1);
+            const resultElement = document.getElementById(resultId);
+            
+            if (userInput === correctSpelling) {
+                resultElement.innerHTML = "¡Correcto! 🎉";
+                resultElement.style.color = "#33ff00";
+                correctAnswers++;
+            } else {
+                resultElement.innerHTML = "Incorrecto. Intenta de nuevo. ❌";
+                resultElement.style.color = "#ff0000";
+            }
+        }
+
+        function calculateScore() {
+            const scoreResult = document.getElementById("scoreResult");
+            scoreResult.innerHTML = `Tu calificación es: ${correctAnswers} de ${totalWords}`;
+            scoreResult.style.color = "#ff00aa";
+            correctAnswers = 0; // Reinicia el conteo para la próxima evaluación
+        }
+
+        function teacherMode() {
+            const password = document.getElementById("teacherPassword").value;
+            if (password === "552455") {
+                correctAnswers = totalWords; // Asigna todas las respuestas correctas
+                calculateScore(); // Califica
+                // Resuelve todas las palabras y muestra las respuestas correctas
+                const correctWords = [
+                    'ghost',
+                    'pumpkin',
+                    'witch',
+                    'skeleton',
+                    'candy',
+                    'monster',
+                    'vampire',
+                    'graveyard',
+                    'tombstone',
+                    'terror'
+                ];
+
+                for (let i = 1; i <= totalWords; i++) {
+                    const inputField = document.getElementById('input' + i);
+                    inputField.value = correctWords[i - 1]; // Coloca la palabra correcta
+                    checkSpelling('input' + i, correctWords[i - 1]); // Comprueba como correcta
+                    const resultElement = document.getElementById('result' + i);
+                    resultElement.innerHTML += `<br><strong>Respuesta correcta:</strong> ${correctWords[i - 1]}`; // Muestra la respuesta correcta
+                }
+            } else {
+                alert("Clave incorrecta. Inténtalo de nuevo.");
+            }
+        }
+    </script>
+</body>
+</html>
